@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="calculator.css">
+
+    <title>calcut</title>
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <table>
+        <input type="text" id="calculator-screen" value="" />
+
+        <tr>
+            <td><button class="number">1</button></td>
+            <td><button class="number">2</button></td>
+            <td><button class="number">3</button></td>
+            <td><button class="operation">/</button></td>
+        </tr>
+        <tr>
+            <td><button class="number">4</button></td>
+            <td><button class="number">5</button></td>
+            <td><button class="number">6</button></td>
+            <td><button class="operation">*</button></td>
+        </tr>
+        <tr>
+            <td><button class="number">7</button></td>
+            <td><button class="number">8</button></td>
+            <td><button class="number">9</button></td>
+            <td><button class="operation">+</button></td>
+        </tr>
+        <tr>
+            <td><button class="operation">=</button></td>
+            <td><button class="number">0</button></td>
+            <td><button class="end">X</button></td>
+            <td><button class="operation">-</button></td>
+        </tr>
+    </table>
+
+    <script>
+
+
+        var OPERATOR = '';
+        var VALUE = 0;
+
+        var numbers = document.querySelectorAll(".number");
+        var inputArea = document.querySelector("#calculator-screen");
+        inputArea.value = 0;
+
+        for (let i = 0; i < numbers.length; i++) {
+            const nmber = numbers[i];
+            nmber.addEventListener("click", function () {
+                // debugger;
+                if (inputArea.value == 0) {
+                    inputArea.value = event.target.innerText;
+                } else {
+                    if (OPERATOR !== '' && VALUE === parseInt(inputArea.value)) {
+                        inputArea.value = event.target.innerText;
+                    } else {
+                        inputArea.value += event.target.innerText;
+                    }
+                }
+
+            });
+        }
+
+        var operations = document.querySelectorAll(".operation");
+        for (let index = 0; index < operations.length; index++) {
+            const operation = operations[index];
+            operation.addEventListener("click", function (event) {
+                // debugger;
+                var opr = event.target.innerText;
+                Calc(inputArea.value, opr);
+            })
+        }
+
+        function plus() {
+            if (opr === '+') {
+                VALUE = VALUE + parseInt(val);
+                OPERATOR = '+';
+            }
+        }
+        function minus() {
+            if (opr === '+') {
+                VALUE = VALUE + parseInt(val);
+                OPERATOR = '+';
+            }
+            inputArea.value = VALUE;
+            console.log(VALUE)
+        }
+        function dividedBy() {
+            if (opr === '+') {
+                VALUE = VALUE + parseInt(val);
+                OPERATOR = '+';
+            }
+        }
+        function multiply() {
+            if (opr === '+') {
+                VALUE = VALUE + parseInt(val);
+                OPERATOR = '+';
+            }
+        }
+        function equalsTo() {
+            if (opr === '+') {
+                VALUE = VALUE + parseInt(val);
+                OPERATOR = '+';
+            }
+        }
+
+
+
+        // function Calc(val, opr) {
+        //     // debugger;
+        //     if (opr === '+') {
+        //         VALUE = VALUE + parseInt(val);
+        //         OPERATOR = '+';
+        //     } else if (opr === '-') {
+        //         VALUE = VALUE - parseInt(val);
+        //         OPERATOR = '-';
+        //     } else if (opr === '*') {
+        //         VALUE = VALUE * parseInt(val);
+        //         OPERATOR = '*';
+        //     } else if (opr === '/') {
+        //         VALUE = VALUE / parseInt(val);
+        //         OPERATOR = '/';
+        //     } else if (opr === '=') {
+        //         Calc(val, OPERATOR);
+        //     }
+        //     inputArea.value = VALUE;
+
+        //     console.log(VALUE)
+        // }
+
+        // eşittire tıkladığımda yapılan işlemin sonucunu calculator - screene yazacak.
+        var deneme1 = document.querySelectorAll(".end");
+        for (let i = 0; i < deneme1.length; i++) {
+            const elementss = deneme1[i];
+            elementss.addEventListener("click", function () {
+                document.getElementById("calculator-screen").value = "";
+            });
+        }
+
+
+
+
+    </script>
+
+</body>
+
+</html>
