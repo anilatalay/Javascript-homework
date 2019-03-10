@@ -76,13 +76,12 @@
         <tr>
             <td><button class="operation">=</button></td>
             <td><button class="number">0</button></td>
-            <td><button class="end" value="end">AC</button></td>
+            <td><button class="end" value="end">X</button></td>
             <td><button class="operation">-</button></td>
         </tr>
     </table>
 
     <script>
-
         var OPERATOR = '';
         var VALUE = 0;
 
@@ -125,48 +124,63 @@
                 VALUE = VALUE - parseInt(val);
                 OPERATOR = '-';
             } else if (opr === '*') {
-                if (opr !== OPERATOR) {
-                    VALUE = parseInt(1);
-                }
-                VALUE = VALUE * parseInt(val);
-                OPERATOR = '*';
-            } else if (opr === '/') {
-                if (opr !== OPERATOR) {
+
+                // Oprerator boş ise demekki ilk sayı bu demek oyuzden hemen VALUE değerini 1 yapıyoruz ki çarpmadan 0 ile çarpmayalım
+                if (OPERATOR === '') {
                     VALUE = 1;
                 }
+
+                VALUE = VALUE * parseInt(val);
+                OPERATOR = '*';
+
+            } else if (opr === '/') {
+
+                if (OPERATOR === '') {
+                    VALUE = parseInt(val);
+                }
+
                 VALUE = VALUE / parseInt(val);
                 OPERATOR = '/';
+
             } else if (opr === '=') {
                 Calc(val, OPERATOR);
                 return;
             }
+
             inputArea.value = VALUE;
 
             console.log(VALUE)
         }
 
-        // X'ya tıkladığımda yapılan işlemin sonucunu calculator - screene yazacak.
-        var deneme1 = document.querySelectorAll("operation");
-        for (let i = 0; i < deneme1.length; i++) {
-            const elementss = deneme1[i];
-            elementss.addEventListener("click", function () {
 
-                inputArea.value = "0";
-                VALUE = "0";
-                // document.getElementById("calculator-screen").value = "0";
-            });
+        var ends = document.querySelectorAll(".end");
+        for (let index = 0; index < ends.length; index++) {
+            const en = ends[index];
+            en.addEventListener("click", function (event) {
+                // Değerleri sıfırlama yapıyoruz
+                VALUE = 0;
+                OPERATOR = '';
+                inputArea.value = '';
+            })
         }
+
+        // X'ya tıkladığımda yapılan işlemin sonucunu calculator - screene yazacak.
+        // var deneme1 = document.querySelectorAll("operation");
+        // for (let i = 0; i < deneme1.length; i++) {
+        //     const elementss = deneme1[i];
+        //     elementss.addEventListener("click", function () {
+
+        //         inputArea.value = "0";
+        //         VALUE = "0";
+        //         // document.getElementById("calculator-screen").value = "0";
+        //     });
+        // }
 
 
         // if (target.classList.contains('all-clear')) {
         //     console.log('clear', target.value);
         //     return;
         // }
-
-
-
-
-
     </script>
 
 </body>
