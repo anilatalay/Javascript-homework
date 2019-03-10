@@ -76,7 +76,7 @@
         <tr>
             <td><button class="operation">=</button></td>
             <td><button class="number">0</button></td>
-            <td><button class="end" value="end">X</button></td>
+            <td><button class="end" value="end">AC</button></td>
             <td><button class="operation">-</button></td>
         </tr>
     </table>
